@@ -1,0 +1,49 @@
+<!-- [nzLayout]="'vertical'" -->
+
+<ul class="nav nav-tabs">
+  <li [ngClass]="{ active: tab == 1 }" (click)="tab = 1">
+    <a href="#">Create</a>
+  </li>
+  <li [ngClass]="{ active: tab == 2 }" (click)="tab = 2">
+    <a href="#">View</a>
+  </li>
+  <li [ngClass]="{ active: tab == 3 }" (click)="tab = 3">
+    <a href="#">ZEuh</a>
+  </li>
+</ul>
+<div [ngSwitch]="tab">
+  <div *ngSwitchCase="1">
+    <nz-layout>
+      <div class="inner-content">
+        <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <formly-form [form]="form" [model]="model" [fields]="fields">
+          </formly-form>
+
+          <button nz-button nzType="primary" type="submit">Submit</button>
+          <button nz-button nzType="danger" type="reset">Reset</button>
+        </form>
+      </div>
+    </nz-layout>
+  </div>
+  <div *ngSwitchCase="2">
+    <nz-layout>
+      <pre>{{ model2 | json }}</pre>
+      <pre>{{ fields2 | json }}</pre>
+      <div id="show">
+        <form
+          nz-form
+          [nzLayout]="'vertical'"
+          [formGroup]="form2"
+          (ngSubmit)="onSubmit2()"
+        >
+          <formly-form [form]="form2" [model]="model2" [fields]="fields2">
+            <button nz-button nzType="primary" type="submit">Submit</button>
+            <button nz-button nzType="danger" type="reset">Reset</button>
+          </formly-form>
+        </form>
+      </div>
+    </nz-layout>
+  </div>
+  <div *ngSwitchCase="3">Content 3</div>
+  <div *ngSwitchDefault>Default</div>
+</div>
